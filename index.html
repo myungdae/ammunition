@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Platform | Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="#00ff88" stroke-width="2"/>
+                    <path d="M20 8 L20 32 M8 20 L32 20" stroke="#00ff88" stroke-width="2"/>
+                    <circle cx="20" cy="20" r="4" fill="#00ff88"/>
+                </svg>
+                <span>AGENTIC AI</span>
+            </div>
+            <nav class="nav">
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#agents">Agents</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#settings">Settings</a>
+            </nav>
+            <div class="user-info">
+                <div class="status-indicator"></div>
+                <span>System Active</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <div class="section">
+                    <h3>Active Agents</h3>
+                    <div class="agent-list">
+                        <div class="agent-item active">
+                            <div class="agent-icon">🤖</div>
+                            <div class="agent-details">
+                                <h4>Data Analyzer</h4>
+                                <span class="status">Running</span>
+                            </div>
+                            <div class="agent-metrics">
+                                <div class="metric">98%</div>
+                            </div>
+                        </div>
+                        <div class="agent-item active">
+                            <div class="agent-icon">🧠</div>
+                            <div class="agent-details">
+                                <h4>ML Predictor</h4>
+                                <span class="status">Running</span>
+                            </div>
+                            <div class="agent-metrics">
+                                <div class="metric">95%</div>
+                            </div>
+                        </div>
+                        <div class="agent-item">
+                            <div class="agent-icon">📊</div>
+                            <div class="agent-details">
+                                <h4>Report Gen</h4>
+                                <span class="status idle">Idle</span>
+                            </div>
+                            <div class="agent-metrics">
+                                <div class="metric">--</div>
+                            </div>
+                        </div>
+                        <div class="agent-item active">
+                            <div class="agent-icon">🔍</div>
+                            <div class="agent-details">
+                                <h4>Pattern Finder</h4>
+                                <span class="status">Running</span>
+                            </div>
+                            <div class="agent-metrics">
+                                <div class="metric">92%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Quick Actions</h3>
+                    <button class="action-btn">Deploy New Agent</button>
+                    <button class="action-btn secondary">Run Analysis</button>
+                    <button class="action-btn secondary">Export Data</button>
+                </div>
+            </aside>
+
+            <!-- Center Content -->
+            <section class="center-panel">
+                <div class="panel-header">
+                    <h2>System Overview</h2>
+                    <div class="time-selector">
+                        <button>1H</button>
+                        <button>24H</button>
+                        <button class="active">7D</button>
+                        <button>30D</button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-content">
+                            <h4>Processing Speed</h4>
+                            <div class="stat-value">1,247<span class="unit">req/s</span></div>
+                            <div class="stat-change positive">↑ 12.3%</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <h4>Accuracy Rate</h4>
+                            <div class="stat-value">98.7<span class="unit">%</span></div>
+                            <div class="stat-change positive">↑ 2.1%</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💾</div>
+                        <div class="stat-content">
+                            <h4>Data Processed</h4>
+                            <div class="stat-value">2.4<span class="unit">TB</span></div>
+                            <div class="stat-change positive">↑ 8.5%</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-content">
+                            <h4>Active Tasks</h4>
+                            <div class="stat-value">342<span class="unit">jobs</span></div>
+                            <div class="stat-change negative">↓ 5.2%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Visualization -->
+                <div class="visualization-panel">
+                    <h3>Real-time Activity</h3>
+                    <canvas id="activityChart"></canvas>
+                </div>
+
+                <!-- Data Table -->
+                <div class="data-table-panel">
+                    <div class="table-header">
+                        <h3>Recent Operations</h3>
+                        <input type="text" placeholder="Search operations..." class="search-input">
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Agent</th>
+                                <th>Operation</th>
+                                <th>Status</th>
+                                <th>Duration</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15:34:21</td>
+                                <td><span class="badge">Data Analyzer</span></td>
+                                <td>Pattern Recognition</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                                <td>2.3s</td>
+                                <td>847 patterns</td>
+                            </tr>
+                            <tr>
+                                <td>15:33:45</td>
+                                <td><span class="badge">ML Predictor</span></td>
+                                <td>Model Training</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                                <td>45.2s</td>
+                                <td>95.3% accuracy</td>
+                            </tr>
+                            <tr>
+                                <td>15:32:18</td>
+                                <td><span class="badge">Pattern Finder</span></td>
+                                <td>Anomaly Detection</td>
+                                <td><span class="status-badge running">Running</span></td>
+                                <td>12.8s</td>
+                                <td>In progress...</td>
+                            </tr>
+                            <tr>
+                                <td>15:31:03</td>
+                                <td><span class="badge">Data Analyzer</span></td>
+                                <td>Data Ingestion</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                                <td>5.1s</td>
+                                <td>1.2GB processed</td>
+                            </tr>
+                            <tr>
+                                <td>15:29:47</td>
+                                <td><span class="badge">ML Predictor</span></td>
+                                <td>Prediction Task</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                                <td>1.7s</td>
+                                <td>342 predictions</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Right Sidebar -->
+            <aside class="right-sidebar">
+                <div class="section">
+                    <h3>System Health</h3>
+                    <div class="health-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">CPU Usage</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 67%"></div>
+                            </div>
+                            <span class="metric-value">67%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Memory</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 54%"></div>
+                            </div>
+                            <span class="metric-value">54%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Network</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 32%"></div>
+                            </div>
+                            <span class="metric-value">32%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Storage</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%"></div>
+                            </div>
+                            <span class="metric-value">78%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Live Feed</h3>
+                    <div class="feed-list">
+                        <div class="feed-item">
+                            <div class="feed-time">15:34</div>
+                            <div class="feed-content">
+                                <span class="feed-type info">INFO</span>
+                                Agent deployed successfully
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-time">15:33</div>
+                            <div class="feed-content">
+                                <span class="feed-type success">SUCCESS</span>
+                                Analysis completed: 847 patterns found
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-time">15:32</div>
+                            <div class="feed-content">
+                                <span class="feed-type warning">WARN</span>
+                                High memory usage detected
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-time">15:31</div>
+                            <div class="feed-content">
+                                <span class="feed-type info">INFO</span>
+                                Data ingestion started
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-time">15:30</div>
+                            <div class="feed-content">
+                                <span class="feed-type success">SUCCESS</span>
+                                Model training completed
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Agent Network</h3>
+                    <canvas id="networkGraph"></canvas>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
