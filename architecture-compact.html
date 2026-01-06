@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6단계 아키텍처 - 한눈에 보기</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Force single screen view - NO SCROLLING */
+        body, html {
+            overflow: hidden !important;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .app {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main-content {
+            height: 100vh;
+            overflow: hidden !important;
+        }
+
+        .architecture-content {
+            padding: 0.5rem 1rem;
+            max-width: 100%;
+            height: calc(100vh - 70px);
+            overflow: hidden !important;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Minimal Header */
+        .arch-header {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            padding: 0.4rem;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 201, 219, 0.1));
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .arch-header h1 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .arch-header p {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            margin: 0.2rem 0 0 0;
+            line-height: 1.2;
+        }
+
+        .arch-highlight {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* Ultra Compact Grid - Fixed Height */
+        .layers-ultra-compact {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .layer-ultra {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            padding: 0.5rem;
+            border: 2px solid var(--border-color);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .layer-ultra:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .layer-ultra.layer-6 { border-left: 3px solid #9F7AEA; }
+        .layer-ultra.layer-5 { border-left: 3px solid #4A9EFF; }
+        .layer-ultra.layer-4 { border-left: 3px solid #FF9F43; }
+        .layer-ultra.layer-3 { border-left: 3px solid #00C9DB; }
+        .layer-ultra.layer-2 { border-left: 3px solid #28C76F; }
+        .layer-ultra.layer-1 { border-left: 3px solid #EA5455; }
+
+        .layer-ultra-header {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .layer-num-ultra {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-weight: 700;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 8px;
+            min-width: 45px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .layer-6 .layer-num-ultra { background: linear-gradient(135deg, #9F7AEA, #667eea); }
+        .layer-5 .layer-num-ultra { background: linear-gradient(135deg, #4A9EFF, #00C9DB); }
+        .layer-4 .layer-num-ultra { background: linear-gradient(135deg, #FF9F43, #FF6B6B); }
+        .layer-3 .layer-num-ultra { background: linear-gradient(135deg, #00C9DB, #4A9EFF); }
+        .layer-2 .layer-num-ultra { background: linear-gradient(135deg, #28C76F, #00D68F); }
+        .layer-1 .layer-num-ultra { background: linear-gradient(135deg, #EA5455, #FF6B6B); }
+
+        .layer-ultra-header h3 {
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .layer-desc-ultra {
+            color: var(--text-secondary);
+            font-size: 0.65rem;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            flex: 1;
+        }
+
+        .layer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .tag {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            white-space: nowrap;
+        }
+
+        /* Bottom Section - Fixed Height */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            height: 120px;
+        }
+
+        .comparison-ultra {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem;
+            overflow: hidden;
+        }
+
+        .comparison-ultra.highlight {
+            border: 2px solid var(--blue);
+        }
+
+        .comparison-ultra h3 {
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            margin: 0 0 0.3rem 0;
+            font-weight: 600;
+        }
+
+        .comparison-ultra ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-ultra li {
+            color: var(--text-secondary);
+            font-size: 0.65rem;
+            line-height: 1.3;
+            margin-bottom: 0.15rem;
+            padding-left: 0.8rem;
+            position: relative;
+        }
+
+        .comparison-ultra li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-size: 0.6rem;
+        }
+
+        .comparison-note-ultra {
+            margin-top: 0.3rem;
+            padding-top: 0.3rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.6rem;
+            line-height: 1.2;
+        }
+
+        /* Arrow */
+        .arrow-ultra {
+            text-align: center;
+            margin-top: 0.2rem;
+            padding-top: 0.2rem;
+            border-top: 1px dashed var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .arrow-ultra svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0.4;
+        }
+
+        /* Header minimal */
+        .header {
+            padding: 0.5rem 1rem;
+            height: 50px;
+        }
+
+        .header h1 {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .layer-ultra-header h3 {
+                font-size: 0.7rem;
+            }
+            .layer-desc-ultra {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="14" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+                        <path d="M16 6 L16 26 M6 16 L26 16" stroke="#4A9EFF" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="3" fill="#4A9EFF"/>
+                    </svg>
+                    <span>Agentic AI<br/>탄약관리</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <rect x="2" y="2" width="6" height="6" rx="1"/>
+                        <rect x="10" y="2" width="6" height="6" rx="1"/>
+                        <rect x="2" y="10" width="6" height="6" rx="1"/>
+                        <rect x="10" y="10" width="6" height="6" rx="1"/>
+                    </svg>
+                    <span>대시보드</span>
+                </a>
+                <a href="#inventory" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M3 3a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 1a1 1 0 000 2h6a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>재고관리</span>
+                </a>
+                <a href="#monitoring" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H3a1 1 0 01-1-1v-4zM7 7a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1H8a1 1 0 01-1-1V7zM12 3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V3z"/>
+                    </svg>
+                    <span>실시간 모니터링</span>
+                </a>
+                <a href="#analytics" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>분석</span>
+                </a>
+                <a href="ontology.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a1 1 0 011 1v1h3a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h3V3a1 1 0 011-1zM5 6v2h2V6H5zm4 0v2h2V6H9zm4 0v2h2V6h-2zM5 10v2h2v-2H5zm4 0v2h2v-2H9zm4 0v2h2v-2h-2z"/>
+                    </svg>
+                    <span>온톨로지 시스템</span>
+                </a>
+                <a href="architecture.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V9zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h12a1 1 0 001-1v-2a1 1 0 00-1-1H3z"/>
+                    </svg>
+                    <span>시스템 아키텍처</span>
+                </a>
+                <a href="architecture-compact.html" class="nav-link active">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V9zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h12a1 1 0 001-1v-2a1 1 0 00-1-1H3z"/>
+                    </svg>
+                    <span>아키텍처 한눈에</span>
+                </a>
+                <a href="#search" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 2a6 6 0 104.472 10.03l3.249 3.249a1 1 0 001.414-1.414l-3.25-3.249A6 6 0 008 2zM4 8a4 4 0 118 0 4 4 0 01-8 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>지능형 검색</span>
+                </a>
+                <a href="#chatbot" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 5a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H11l-3 3v-3H4a2 2 0 01-2-2V5zm3 1a1 1 0 000 2h8a1 1 0 100-2H5zm0 3a1 1 0 000 2h3a1 1 0 100-2H5z"/>
+                    </svg>
+                    <span>AI 챗봇</span>
+                </a>
+                <a href="#reports" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H4zm1 3a1 1 0 011-1h6a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H6zm0 3a1 1 0 100 2h4a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>보고서</span>
+                </a>
+                <a href="#alerts" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a5 5 0 00-5 5v2.586l-.707.707A1 1 0 004 12h10a1 1 0 00.707-1.707L14 9.586V7a5 5 0 00-5-5zM9 16a2 2 0 01-2-2h4a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>알림</span>
+                </a>
+                <a href="#settings" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.405 2.544a.75.75 0 00-1.41 0l-.647 1.941a.75.75 0 01-.476.476l-1.941.647a.75.75 0 000 1.41l1.941.647a.75.75 0 01.476.476l.647 1.941a.75.75 0 001.41 0l.647-1.941a.75.75 0 01.476-.476l1.941-.647a.75.75 0 000-1.41l-1.941-.647a.75.75 0 01-.476-.476l-.647-1.941zM9 11a2 2 0 100-4 2 2 0 000 4z"/>
+                    </svg>
+                    <span>설정</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator"></div>
+                    <span>시스템 정상</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="page-icon">
+                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 6a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h16a1 1 0 001-1v-2a1 1 0 00-1-1H4z"/>
+                    </svg>
+                    <h1>6단계 지능형 거버넌스 - 한눈에 보기</h1>
+                </div>
+                <div class="header-right">
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="user-menu">
+                        <span>관리자</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M5.293 6.293a1 1 0 011.414 0L8 7.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Architecture Content -->
+            <div class="architecture-content">
+                <!-- Header -->
+                <div class="arch-header">
+                    <h1>🚀 Palantir를 넘어선 지능형 거버넌스</h1>
+                    <p>Palantir 3단계 + <span class="arch-highlight">AI추론(SWRL) + 제약검증(SHACL) + 거버넌스 + 인간통제</span> = 6단계</p>
+                </div>
+
+                <!-- 6 Layers Ultra Compact -->
+                <div class="layers-ultra-compact">
+                    <!-- Layer 6 -->
+                    <div class="layer-ultra layer-6">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 6</div>
+                            <h3>Human Decision</h3>
+                        </div>
+                        <p class="layer-desc-ultra">지휘관/관리자 최종 의사결정. 모든 중요 작업은 인간 승인 필수</p>
+                        <div class="layer-tags">
+                            <span class="tag">✓ 승인</span>
+                            <span class="tag">◉ 보류</span>
+                            <span class="tag">✗ 거부</span>
+                        </div>
+                        <div class="arrow-ultra">
+                            <svg viewBox="0 0 20 20"><path d="M10 2 L10 18 M5 13 L10 18 L15 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Layer 5 -->
+                    <div class="layer-ultra layer-5">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 5</div>
+                            <h3>Governance Ontology</h3>
+                        </div>
+                        <p class="layer-desc-ultra">제안/승인 구조화. 책임·권한·감사 추적 보장</p>
+                        <div class="layer-tags">
+                            <span class="tag">ActionProposal</span>
+                            <span class="tag">ApprovalRequest</span>
+                            <span class="tag">AuditRecord</span>
+                        </div>
+                        <div class="arrow-ultra">
+                            <svg viewBox="0 0 20 20"><path d="M10 2 L10 18 M5 13 L10 18 L15 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Layer 4 -->
+                    <div class="layer-ultra layer-4">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 4</div>
+                            <h3>SHACL Control</h3>
+                        </div>
+                        <p class="layer-desc-ultra">근거 검증. 충분한 경우만 추론 허용. 부족시 "판단불가"</p>
+                        <div class="layer-tags">
+                            <span class="tag">데이터 완전성</span>
+                            <span class="tag">근거 평가</span>
+                            <span class="tag">불충분 차단</span>
+                        </div>
+                        <div class="arrow-ultra">
+                            <svg viewBox="0 0 20 20"><path d="M10 2 L10 18 M5 13 L10 18 L15 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3 -->
+                    <div class="layer-ultra layer-3">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 3</div>
+                            <h3>SWRL Reasoning</h3>
+                        </div>
+                        <p class="layer-desc-ultra">의미 기반 추론. 상황 분석 후 행동 제안 자동 생성</p>
+                        <div class="layer-tags">
+                            <span class="tag">패턴 매칭</span>
+                            <span class="tag">상황 분석</span>
+                            <span class="tag">자동 제안</span>
+                        </div>
+                        <div class="arrow-ultra">
+                            <svg viewBox="0 0 20 20"><path d="M10 2 L10 18 M5 13 L10 18 L15 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Layer 2 -->
+                    <div class="layer-ultra layer-2">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 2</div>
+                            <h3>Ontology Core</h3>
+                        </div>
+                        <p class="layer-desc-ultra">탄약/위치/상태/이벤트/위험 핵심 개념. 실시간 데이터로 활성화</p>
+                        <div class="layer-tags">
+                            <span class="tag">25개 클래스</span>
+                            <span class="tag">40+ 관계</span>
+                            <span class="tag">Anomaly/Risk</span>
+                        </div>
+                        <div class="arrow-ultra">
+                            <svg viewBox="0 0 20 20"><path d="M10 2 L10 18 M5 13 L10 18 L15 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Layer 1 -->
+                    <div class="layer-ultra layer-1">
+                        <div class="layer-ultra-header">
+                            <div class="layer-num-ultra">Layer 1</div>
+                            <h3>Data / Sensor</h3>
+                        </div>
+                        <p class="layer-desc-ultra">재고/이동/상태/로그 모든 원시 데이터 수집. IoT, RFID, API</p>
+                        <div class="layer-tags">
+                            <span class="tag">실시간 센서</span>
+                            <span class="tag">트랜잭션</span>
+                            <span class="tag">외부 연동</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Comparison -->
+                <div class="bottom-section">
+                    <div class="comparison-ultra">
+                        <h3>Palantir Foundry (3단계)</h3>
+                        <ul>
+                            <li><strong>Data</strong>: 데이터 통합·정제</li>
+                            <li><strong>Ontology</strong>: 개념 모델링</li>
+                            <li><strong>Application</strong>: 분석·시각화</li>
+                        </ul>
+                        <div class="comparison-note-ultra">
+                            ✅ 강력한 데이터 통합<br/>
+                            ❌ AI 판단·승인 체계 부재
+                        </div>
+                    </div>
+
+                    <div class="comparison-ultra highlight">
+                        <h3>본 시스템 (6단계) 🚀</h3>
+                        <ul>
+                            <li><strong>L1-2</strong>: Palantir (Data+Ontology)</li>
+                            <li><strong>L3</strong>: SWRL 추론 (AI 판단) 🆕</li>
+                            <li><strong>L4</strong>: SHACL 검증 (근거 확인) 🆕</li>
+                            <li><strong>L5</strong>: 거버넌스 (제안/승인) 🆕</li>
+                            <li><strong>L6</strong>: 인간 통제 (최종 결정) 🆕</li>
+                        </ul>
+                        <div class="comparison-note-ultra">
+                            ✅ AI자동판단+인간통제<br/>
+                            ✅ 완전한 감사추적·투명성
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
