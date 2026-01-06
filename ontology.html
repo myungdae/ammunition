@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온톨로지 시스템 - 탄약관리</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ontology.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="14" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+                        <path d="M16 6 L16 26 M6 16 L26 16" stroke="#4A9EFF" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="3" fill="#4A9EFF"/>
+                    </svg>
+                    <span>Agentic AI<br/>탄약관리</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <rect x="2" y="2" width="6" height="6" rx="1"/>
+                        <rect x="10" y="2" width="6" height="6" rx="1"/>
+                        <rect x="2" y="10" width="6" height="6" rx="1"/>
+                        <rect x="10" y="10" width="6" height="6" rx="1"/>
+                    </svg>
+                    <span>대시보드</span>
+                </a>
+                <a href="#inventory" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M3 3a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 1a1 1 0 000 2h6a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>재고관리</span>
+                </a>
+                <a href="#monitoring" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H3a1 1 0 01-1-1v-4zM7 7a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1H8a1 1 0 01-1-1V7zM12 3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V3z"/>
+                    </svg>
+                    <span>실시간 모니터링</span>
+                </a>
+                <a href="#analytics" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>분석</span>
+                </a>
+                <a href="ontology.html" class="nav-link active">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a1 1 0 011 1v1h3a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h3V3a1 1 0 011-1zM5 6v2h2V6H5zm4 0v2h2V6H9zm4 0v2h2V6h-2zM5 10v2h2v-2H5zm4 0v2h2v-2H9zm4 0v2h2v-2h-2z"/>
+                    </svg>
+                    <span>온톨로지 시스템</span>
+                </a>
+                <a href="#search" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 2a6 6 0 104.472 10.03l3.249 3.249a1 1 0 001.414-1.414l-3.25-3.249A6 6 0 008 2zM4 8a4 4 0 118 0 4 4 0 01-8 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>지능형 검색</span>
+                </a>
+                <a href="#chatbot" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 5a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H11l-3 3v-3H4a2 2 0 01-2-2V5zm3 1a1 1 0 000 2h8a1 1 0 100-2H5zm0 3a1 1 0 000 2h3a1 1 0 100-2H5z"/>
+                    </svg>
+                    <span>AI 챗봇</span>
+                </a>
+                <a href="#reports" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H4zm1 3a1 1 0 011-1h6a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H6zm0 3a1 1 0 100 2h4a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>보고서</span>
+                </a>
+                <a href="#alerts" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a5 5 0 00-5 5v2.586l-.707.707A1 1 0 004 12h10a1 1 0 00.707-1.707L14 9.586V7a5 5 0 00-5-5zM9 16a2 2 0 01-2-2h4a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>알림</span>
+                </a>
+                <a href="#settings" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.405 2.544a.75.75 0 00-1.41 0l-.647 1.941a.75.75 0 01-.476.476l-1.941.647a.75.75 0 000 1.41l1.941.647a.75.75 0 01.476.476l.647 1.941a.75.75 0 001.41 0l.647-1.941a.75.75 0 01.476-.476l1.941-.647a.75.75 0 000-1.41l-1.941-.647a.75.75 0 01-.476-.476l-.647-1.941zM9 11a2 2 0 100-4 2 2 0 000 4z"/>
+                    </svg>
+                    <span>설정</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator"></div>
+                    <span>시스템 정상</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="page-icon">
+                        <path d="M9 2a1 1 0 011 1v1h6a3 3 0 013 3v12a3 3 0 01-3 3H8a3 3 0 01-3-3V7a3 3 0 013-3h1V3a1 1 0 011-1zm0 4H8a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V7a1 1 0 00-1-1h-1v1a1 1 0 01-2 0V6h-2v1a1 1 0 01-2 0V6z"/>
+                    </svg>
+                    <h1>온톨로지 시스템</h1>
+                </div>
+                <div class="header-right">
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="user-menu">
+                        <span>관리자</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M5.293 6.293a1 1 0 011.414 0L8 7.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/>
+                        </svg>
+                    </div>
+                    <button class="icon-button refresh">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Ontology Content -->
+            <div class="ontology-content">
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="panel-left">
+                        <h2>탄약 온톨로지 지식 그래프</h2>
+                        <p class="subtitle">Ammunition Operational Ontology - 노드 및 관계 시각화</p>
+                    </div>
+                    <div class="panel-right">
+                        <div class="control-group">
+                            <label>노드 필터:</label>
+                            <select id="nodeFilter" class="control-select">
+                                <option value="all">전체 보기</option>
+                                <option value="core">핵심 엔티티</option>
+                                <option value="events">이벤트</option>
+                                <option value="signals">시그널</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>레이아웃:</label>
+                            <select id="layoutType" class="control-select">
+                                <option value="force">Force-Directed</option>
+                                <option value="hierarchical">계층형</option>
+                                <option value="circular">원형</option>
+                            </select>
+                        </div>
+                        <button class="control-btn" id="resetZoom">초기화</button>
+                    </div>
+                </div>
+
+                <!-- Graph Container -->
+                <div class="graph-container">
+                    <canvas id="ontologyGraph"></canvas>
+                    <div class="graph-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4A9EFF;"></div>
+                            <span>핵심 엔티티</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #00C9DB;"></div>
+                            <span>이벤트</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #28C76F;"></div>
+                            <span>정책/규칙</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FF9F43;"></div>
+                            <span>시그널/알림</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #EA5455;"></div>
+                            <span>감사/증거</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Node Details Panel -->
+                <div class="details-panel">
+                    <div class="details-header">
+                        <h3>노드 상세 정보</h3>
+                        <button class="close-btn" id="closeDetails">×</button>
+                    </div>
+                    <div class="details-content" id="detailsContent">
+                        <p class="empty-state">노드를 클릭하여 상세 정보를 확인하세요</p>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="ontology-stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="totalNodes">0</div>
+                        <div class="stat-label">총 노드</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="totalEdges">0</div>
+                        <div class="stat-label">총 관계</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="coreEntities">0</div>
+                        <div class="stat-label">핵심 엔티티</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="eventTypes">0</div>
+                        <div class="stat-label">이벤트 타입</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="ontology.js"></script>
+</body>
+</html>
