@@ -94,17 +94,35 @@ body {
 }
 
 .sidebar-footer {
-    padding: 1rem 0.75rem;
+    padding: 1rem 1.25rem;
     border-top: 1px solid var(--border-color);
 }
 
-.sidebar-section-title {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0.5rem 1rem;
-    font-weight: 600;
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.813rem;
+    color: var(--text-secondary);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(40, 199, 111, 0.7);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 8px rgba(40, 199, 111, 0);
+    }
 }
 
 /* Main Content */
@@ -363,6 +381,15 @@ body {
 .progress-fill.orange { background: var(--orange); }
 .progress-fill.cyan { background: var(--cyan); }
 .progress-fill.green { background: var(--green); }
+.progress-fill.blue { background: var(--blue); }
+.progress-fill.red { background: var(--red); }
+
+.unit {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-left: 0.25rem;
+}
 
 /* Event Chart */
 #eventChart {
@@ -479,3 +506,83 @@ body {
 .stat-card:nth-child(3) { animation-delay: 0.3s; }
 .stat-card:nth-child(4) { animation-delay: 0.4s; }
 .stat-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Transactions Table */
+.transactions-table {
+    overflow-x: auto;
+}
+
+.transactions-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions-table thead {
+    background: var(--bg-tertiary);
+}
+
+.transactions-table th {
+    padding: 0.875rem;
+    text-align: left;
+    font-size: 0.813rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.transactions-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s ease;
+}
+
+.transactions-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.transactions-table td {
+    padding: 1rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-in {
+    background: rgba(40, 199, 111, 0.2);
+    color: var(--green);
+}
+
+.badge-out {
+    background: rgba(0, 201, 219, 0.2);
+    color: var(--cyan);
+}
+
+.badge-check {
+    background: rgba(255, 159, 67, 0.2);
+    color: var(--orange);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-complete {
+    background: rgba(40, 199, 111, 0.2);
+    color: var(--green);
+}
+
+.status-progress {
+    background: rgba(74, 158, 255, 0.2);
+    color: var(--blue);
+    animation: pulse-glow 2s infinite;
+}

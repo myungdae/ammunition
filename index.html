@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>탄약관리체계 - 대시보드</title>
+    <title>지능형 탄약관리체계</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
                         <path d="M16 6 L16 26 M6 16 L26 16" stroke="#4A9EFF" stroke-width="2"/>
                         <circle cx="16" cy="16" r="3" fill="#4A9EFF"/>
                     </svg>
-                    <span>APT 관제</span>
+                    <span>탄약관리</span>
                 </div>
             </div>
             
@@ -31,30 +31,29 @@
                     </svg>
                     <span>대시보드</span>
                 </a>
+                <a href="#inventory" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M3 3a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 1a1 1 0 000 2h6a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>재고관리</span>
+                </a>
                 <a href="#monitoring" class="nav-link">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                        <path d="M2 4a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm3 1a1 1 0 000 2h8a1 1 0 100-2H5zm0 4a1 1 0 000 2h8a1 1 0 100-2H5z"/>
-                    </svg>
-                    <span>이벤트 모니터링</span>
-                </a>
-                <a href="#cctv" class="nav-link">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                        <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14 6a1 1 0 011-1h1a1 1 0 011 1v6a1 1 0 01-1 1h-1a1 1 0 01-1-1V6z"/>
-                    </svg>
-                    <span>CCTV 모니터링</span>
-                </a>
-                <a href="#devices" class="nav-link">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                        <path d="M3 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm1 1v6h10V5H4z"/>
-                        <path d="M2 14h14v1H2v-1z"/>
-                    </svg>
-                    <span>디바이스 관리</span>
-                </a>
-                <a href="#analysis" class="nav-link">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
                         <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H3a1 1 0 01-1-1v-4zM7 7a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1H8a1 1 0 01-1-1V7zM12 3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V3z"/>
                     </svg>
-                    <span>AI 분석</span>
+                    <span>실시간 모니터링</span>
+                </a>
+                <a href="#analytics" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>분석</span>
+                </a>
+                <a href="#reports" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H4zm1 3a1 1 0 011-1h6a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H6zm0 3a1 1 0 100 2h4a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>보고서</span>
                 </a>
                 <a href="#alerts" class="nav-link">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
@@ -64,26 +63,17 @@
                 </a>
                 <a href="#settings" class="nav-link">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                        <path d="M9 2a1 1 0 01.894.553l.832 1.664a1 1 0 00.751.547l1.847.269a1 1 0 01.554 1.706l-1.337 1.303a1 1 0 00-.287.885l.315 1.838a1 1 0 01-1.45 1.054L9 11.202l-1.657.87a1 1 0 01-1.451-1.054l.316-1.838a1 1 0 00-.288-.885L4.583 7.992a1 1 0 01.555-1.706l1.847-.269a1 1 0 00.75-.547l.833-1.664A1 1 0 019 2z"/>
-                    </svg>
-                    <span>AI 설정</span>
-                </a>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="sidebar-section-title">가상시스템 도구</div>
-                <a href="#detection" class="nav-link">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                        <path d="M9 2a7 7 0 100 14A7 7 0 009 2zm0 2a5 5 0 110 10A5 5 0 019 4z"/>
-                    </svg>
-                    <span>Detection 시뮬레이터</span>
-                </a>
-                <a href="#settings-gear" class="nav-link">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
                         <path fill-rule="evenodd" d="M9.405 2.544a.75.75 0 00-1.41 0l-.647 1.941a.75.75 0 01-.476.476l-1.941.647a.75.75 0 000 1.41l1.941.647a.75.75 0 01.476.476l.647 1.941a.75.75 0 001.41 0l.647-1.941a.75.75 0 01.476-.476l1.941-.647a.75.75 0 000-1.41l-1.941-.647a.75.75 0 01-.476-.476l-.647-1.941zM9 11a2 2 0 100-4 2 2 0 000 4z"/>
                     </svg>
                     <span>설정</span>
                 </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator"></div>
+                    <span>시스템 정상</span>
+                </div>
             </div>
         </aside>
 
@@ -98,26 +88,21 @@
                         <rect x="3" y="14" width="7" height="7" rx="1"/>
                         <rect x="14" y="14" width="7" height="7" rx="1"/>
                     </svg>
-                    <h1>대시보드</h1>
+                    <h1>지능형 탄약관리체계</h1>
                 </div>
                 <div class="header-right">
                     <button class="icon-button">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
                         </svg>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">5</span>
                     </button>
                     <div class="user-menu">
-                        <span>작업자 컴퓨터 프로젝트</span>
+                        <span>관리자</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M5.293 6.293a1 1 0 011.414 0L8 7.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/>
                         </svg>
                     </div>
-                    <button class="icon-button">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M4 3a1 1 0 000 2h12a1 1 0 100-2H4zM3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-                        </svg>
-                    </button>
                     <button class="icon-button refresh">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
@@ -137,66 +122,66 @@
                 <div class="stats-row">
                     <div class="stat-card card-blue">
                         <div class="stat-header">
-                            <span class="stat-label">전체 재고수</span>
+                            <span class="stat-label">총 재고량</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6z"/>
+                                <path d="M4 3h16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2zm0 4v12h16V7H4z"/>
                             </svg>
                         </div>
-                        <div class="stat-value">5</div>
+                        <div class="stat-value">24,847<span class="unit">발</span></div>
                         <div class="stat-footer">
-                            <span class="stat-change positive">↗ 40.0% of total</span>
+                            <span class="stat-change positive">↗ 12.3% 증가</span>
                         </div>
                     </div>
 
                     <div class="stat-card card-orange">
                         <div class="stat-header">
-                            <span class="stat-label">위험탄</span>
+                            <span class="stat-label">금일 입고</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L2 12h4v8h12v-8h4L12 2zm0 3.83L17.17 11H15v7H9v-7H6.83L12 5.83z"/>
+                                <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/>
                             </svg>
                         </div>
-                        <div class="stat-value">3</div>
+                        <div class="stat-value">5,800<span class="unit">발</span></div>
                         <div class="stat-footer">
-                            <span class="stat-change positive">↗ 60.0% of total</span>
+                            <span class="stat-change positive">↗ 8건 처리</span>
                         </div>
                     </div>
 
                     <div class="stat-card card-cyan">
                         <div class="stat-header">
-                            <span class="stat-label">전송중</span>
+                            <span class="stat-label">금일 출고</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3 12a9 9 0 1118 0 9 9 0 01-18 0zm9-7a7 7 0 100 14 7 7 0 000-14z"/>
+                                <path d="M12 20l-8-8h6V4h4v8h6l-8 8z"/>
                             </svg>
                         </div>
-                        <div class="stat-value">1</div>
+                        <div class="stat-value">3,240<span class="unit">발</span></div>
                         <div class="stat-footer">
-                            <span class="stat-change positive">↗ 20.0% of total</span>
+                            <span class="stat-change positive">↗ 5건 처리</span>
                         </div>
                     </div>
 
                     <div class="stat-card card-green">
                         <div class="stat-header">
-                            <span class="stat-label">예방됨</span>
+                            <span class="stat-label">재고 정확도</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path fill-rule="evenodd" d="M12 2l9 4.5v6c0 5.25-3.5 10.2-9 11.5-5.5-1.3-9-6.25-9-11.5v-6L12 2zm-1 14.5l-3.5-3.5L9 11.5l2 2 4-4L16.5 11l-5.5 5.5z"/>
                             </svg>
                         </div>
-                        <div class="stat-value">1</div>
+                        <div class="stat-value">99.2<span class="unit">%</span></div>
                         <div class="stat-footer">
-                            <span class="stat-change positive">↗ 20.0% of total</span>
+                            <span class="stat-change positive">↗ 0.3% 개선</span>
                         </div>
                     </div>
 
                     <div class="stat-card card-red">
                         <div class="stat-header">
-                            <span class="stat-label">긴급 케이스</span>
+                            <span class="stat-label">긴급 알림</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                             </svg>
                         </div>
-                        <div class="stat-value">1</div>
+                        <div class="stat-value">3<span class="unit">건</span></div>
                         <div class="stat-footer">
-                            <button class="action-btn-small">긴급 조치 필요</button>
+                            <button class="action-btn-small">확인 필요</button>
                         </div>
                     </div>
                 </div>
@@ -204,58 +189,139 @@
                 <!-- Chart Section -->
                 <div class="chart-section">
                     <div class="section-header">
-                        <h2>케이스 진행 현황</h2>
+                        <h2>탄종별 재고 현황</h2>
                     </div>
                     <div class="progress-bars">
                         <div class="progress-item">
                             <div class="progress-label">
-                                <span>위험탄</span>
-                                <span class="progress-count">3개</span>
+                                <span>5.56mm NATO</span>
+                                <span class="progress-count">8,450발 (34%)</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill orange" style="width: 60%"></div>
+                                <div class="progress-fill orange" style="width: 34%"></div>
                             </div>
                         </div>
                         <div class="progress-item">
                             <div class="progress-label">
-                                <span>전송중</span>
-                                <span class="progress-count">1개</span>
+                                <span>7.62mm NATO</span>
+                                <span class="progress-count">6,230발 (25%)</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill cyan" style="width: 20%"></div>
+                                <div class="progress-fill cyan" style="width: 25%"></div>
                             </div>
                         </div>
                         <div class="progress-item">
                             <div class="progress-label">
-                                <span>예방됨</span>
-                                <span class="progress-count">1개</span>
+                                <span>9mm Para</span>
+                                <span class="progress-count">7,125발 (29%)</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill green" style="width: 20%"></div>
+                                <div class="progress-fill green" style="width: 29%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>12.7mm</span>
+                                <span class="progress-count">2,042발 (8%)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill blue" style="width: 8%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>40mm 유탄</span>
+                                <span class="progress-count">1,000발 (4%)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill red" style="width: 4%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 24 Hour Event Trend -->
+                <!-- 24 Hour Trend -->
                 <div class="chart-section">
                     <div class="section-header">
-                        <h2>24시간 이벤트 트렌드</h2>
+                        <h2>24시간 입출고 트렌드</h2>
                     </div>
                     <canvas id="eventChart"></canvas>
                     <div class="chart-stats">
                         <div class="chart-stat">
-                            <span class="chart-stat-value">6</span>
-                            <span class="chart-stat-label">총 이벤트</span>
+                            <span class="chart-stat-value">13</span>
+                            <span class="chart-stat-label">총 입출고 건수</span>
                         </div>
                         <div class="chart-stat">
-                            <span class="chart-stat-value orange">3</span>
-                            <span class="chart-stat-label">최근 시간</span>
+                            <span class="chart-stat-value orange">8</span>
+                            <span class="chart-stat-label">최근 6시간</span>
                         </div>
                         <div class="chart-stat">
-                            <span class="chart-stat-value green">0.3</span>
+                            <span class="chart-stat-value green">0.54</span>
                             <span class="chart-stat-label">시간당 평균</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="chart-section">
+                    <div class="section-header">
+                        <h2>최근 입출고 내역</h2>
+                    </div>
+                    <div class="transactions-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>시간</th>
+                                    <th>유형</th>
+                                    <th>탄종</th>
+                                    <th>수량</th>
+                                    <th>담당자</th>
+                                    <th>상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15:34</td>
+                                    <td><span class="badge badge-in">입고</span></td>
+                                    <td>5.56mm NATO</td>
+                                    <td>5,000발</td>
+                                    <td>김중위</td>
+                                    <td><span class="status-badge status-complete">완료</span></td>
+                                </tr>
+                                <tr>
+                                    <td>15:12</td>
+                                    <td><span class="badge badge-out">출고</span></td>
+                                    <td>7.62mm NATO</td>
+                                    <td>2,400발</td>
+                                    <td>박하사</td>
+                                    <td><span class="status-badge status-complete">완료</span></td>
+                                </tr>
+                                <tr>
+                                    <td>14:55</td>
+                                    <td><span class="badge badge-check">검수</span></td>
+                                    <td>9mm Para</td>
+                                    <td>1,500발</td>
+                                    <td>이상사</td>
+                                    <td><span class="status-badge status-progress">진행중</span></td>
+                                </tr>
+                                <tr>
+                                    <td>14:28</td>
+                                    <td><span class="badge badge-in">입고</span></td>
+                                    <td>12.7mm</td>
+                                    <td>800발</td>
+                                    <td>최대위</td>
+                                    <td><span class="status-badge status-complete">완료</span></td>
+                                </tr>
+                                <tr>
+                                    <td>13:45</td>
+                                    <td><span class="badge badge-out">출고</span></td>
+                                    <td>40mm 유탄</td>
+                                    <td>120발</td>
+                                    <td>정소령</td>
+                                    <td><span class="status-badge status-complete">완료</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
