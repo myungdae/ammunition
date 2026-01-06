@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시스템 아키텍처 - 6단계 지능형 거버넌스</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="architecture.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="14" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+                        <path d="M16 6 L16 26 M6 16 L26 16" stroke="#4A9EFF" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="3" fill="#4A9EFF"/>
+                    </svg>
+                    <span>Agentic AI<br/>탄약관리</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <rect x="2" y="2" width="6" height="6" rx="1"/>
+                        <rect x="10" y="2" width="6" height="6" rx="1"/>
+                        <rect x="2" y="10" width="6" height="6" rx="1"/>
+                        <rect x="10" y="10" width="6" height="6" rx="1"/>
+                    </svg>
+                    <span>대시보드</span>
+                </a>
+                <a href="#inventory" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M3 3a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 1a1 1 0 000 2h6a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>재고관리</span>
+                </a>
+                <a href="#monitoring" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1H3a1 1 0 01-1-1v-4zM7 7a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1H8a1 1 0 01-1-1V7zM12 3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V3z"/>
+                    </svg>
+                    <span>실시간 모니터링</span>
+                </a>
+                <a href="#analytics" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>분석</span>
+                </a>
+                <a href="ontology.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a1 1 0 011 1v1h3a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h3V3a1 1 0 011-1zM5 6v2h2V6H5zm4 0v2h2V6H9zm4 0v2h2V6h-2zM5 10v2h2v-2H5zm4 0v2h2v-2H9zm4 0v2h2v-2h-2z"/>
+                    </svg>
+                    <span>온톨로지 시스템</span>
+                </a>
+                <a href="architecture.html" class="nav-link active">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V9zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h12a1 1 0 001-1v-2a1 1 0 00-1-1H3z"/>
+                    </svg>
+                    <span>시스템 아키텍처</span>
+                </a>
+                <a href="#search" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 2a6 6 0 104.472 10.03l3.249 3.249a1 1 0 001.414-1.414l-3.25-3.249A6 6 0 008 2zM4 8a4 4 0 118 0 4 4 0 01-8 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>지능형 검색</span>
+                </a>
+                <a href="#chatbot" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M2 5a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H11l-3 3v-3H4a2 2 0 01-2-2V5zm3 1a1 1 0 000 2h8a1 1 0 100-2H5zm0 3a1 1 0 000 2h3a1 1 0 100-2H5z"/>
+                    </svg>
+                    <span>AI 챗봇</span>
+                </a>
+                <a href="#reports" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H4zm1 3a1 1 0 011-1h6a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H6zm0 3a1 1 0 100 2h4a1 1 0 100-2H6z"/>
+                    </svg>
+                    <span>보고서</span>
+                </a>
+                <a href="#alerts" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path d="M9 2a5 5 0 00-5 5v2.586l-.707.707A1 1 0 004 12h10a1 1 0 00.707-1.707L14 9.586V7a5 5 0 00-5-5zM9 16a2 2 0 01-2-2h4a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>알림</span>
+                </a>
+                <a href="#settings" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.405 2.544a.75.75 0 00-1.41 0l-.647 1.941a.75.75 0 01-.476.476l-1.941.647a.75.75 0 000 1.41l1.941.647a.75.75 0 01.476.476l.647 1.941a.75.75 0 001.41 0l.647-1.941a.75.75 0 01.476-.476l1.941-.647a.75.75 0 000-1.41l-1.941-.647a.75.75 0 01-.476-.476l-.647-1.941zM9 11a2 2 0 100-4 2 2 0 000 4z"/>
+                    </svg>
+                    <span>설정</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator"></div>
+                    <span>시스템 정상</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="page-icon">
+                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 6a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h16a1 1 0 001-1v-2a1 1 0 00-1-1H4z"/>
+                    </svg>
+                    <h1>시스템 아키텍처 - 6단계 지능형 거버넌스</h1>
+                </div>
+                <div class="header-right">
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="user-menu">
+                        <span>관리자</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M5.293 6.293a1 1 0 011.414 0L8 7.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/>
+                        </svg>
+                    </div>
+                    <button class="icon-button refresh">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Architecture Content -->
+            <div class="architecture-content">
+                <!-- Introduction -->
+                <div class="intro-section">
+                    <div class="intro-card">
+                        <h2>🚀 Palantir를 넘어선 지능형 거버넌스</h2>
+                        <p>본 시스템은 Palantir의 3단계 아키텍처(Data Layer → Ontology Layer → Application Layer)를 기반으로, 
+                        <strong>AI 추론(SWRL)</strong>, <strong>제약 검증(SHACL)</strong>, <strong>거버넌스(Approval)</strong>, 
+                        <strong>인간 의사결정(Human in the Loop)</strong>을 추가한 <span class="highlight">6단계 지능형 거버넌스 아키텍처</span>입니다.</p>
+                    </div>
+                </div>
+
+                <!-- Architecture Layers -->
+                <div class="layers-container">
+                    <!-- Layer 6: Human Decision -->
+                    <div class="layer-card layer-6" data-layer="6">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 6</div>
+                            <h3>Human Decision Layer</h3>
+                            <div class="layer-badge badge-human">인간 의사결정</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>지휘관 / 관리자 / 책임 주체</strong>가 최종 의사결정을 수행합니다.</p>
+                                <p>모든 중요한 작업은 인간의 승인을 거쳐야 실행됩니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#28C76F">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                    </svg>
+                                    <span>승인 (Approve)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#FF9F43">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"/>
+                                    </svg>
+                                    <span>보류 (Hold)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#EA5455">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+                                    </svg>
+                                    <span>거부 (Reject)</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>예시:</strong> "긴급 재고 보충 제안" → 지휘관이 검토 후 승인/거부
+                            </div>
+                        </div>
+                        <div class="layer-arrow">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path d="M20 5 L20 30 M10 20 L20 30 L30 20" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="arrow-label">승인 / 보류 / 거부</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 5: Governance Ontology -->
+                    <div class="layer-card layer-5" data-layer="5">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 5</div>
+                            <h3>Governance Ontology Layer</h3>
+                            <div class="layer-badge badge-governance">거버넌스</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>ActionProposal / ApprovalRequest / Decision</strong> 온톨로지로 제안과 승인을 구조화합니다.</p>
+                                <p>책임, 권한, 기록, 감사 추적을 보장합니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A9EFF">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                                    </svg>
+                                    <span>ActionProposal 생성</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#00C9DB">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                                    </svg>
+                                    <span>ApprovalRequest 라우팅</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#28C76F">
+                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z"/>
+                                    </svg>
+                                    <span>AuditRecord 기록</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>예시:</strong> Proposal ID: PRO-2024-001, 제안자: AI Agent, 승인자: 김소령, 상태: Pending
+                            </div>
+                        </div>
+                        <div class="layer-arrow">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path d="M20 5 L20 30 M10 20 L20 30 L30 20" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="arrow-label">제안 생성 가능 여부 통제</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 4: SHACL Control -->
+                    <div class="layer-card layer-4" data-layer="4">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 4</div>
+                            <h3>SHACL Control Layer</h3>
+                            <div class="layer-badge badge-control">제약 검증</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>판단 전제조건을 검증</strong>하여 근거가 충분한 경우에만 추론을 허용합니다.</p>
+                                <p>근거 부족 시 "판단 불가"를 명시합니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#FF9F43">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                                    </svg>
+                                    <span>데이터 완전성 검증</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A9EFF">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                                    </svg>
+                                    <span>근거 충족도 평가</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#EA5455">
+                                        <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"/>
+                                    </svg>
+                                    <span>불충분 시 차단</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>예시:</strong> 재고 데이터가 48시간 이상 업데이트 안됨 → "판단 불가" (데이터 신선도 위반)
+                            </div>
+                        </div>
+                        <div class="layer-arrow">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path d="M20 5 L20 30 M10 20 L20 30 L30 20" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="arrow-label">의미 충족 시만 추론 허용</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3: SWRL Reasoning -->
+                    <div class="layer-card layer-3" data-layer="3">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 3</div>
+                            <h3>SWRL Reasoning Layer</h3>
+                            <div class="layer-badge badge-reasoning">AI 추론</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>의미 기반 추론</strong>으로 상황(Situation)을 분석하고 행동 제안(ActionProposal)을 생성합니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#9F7AEA">
+                                        <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"/>
+                                    </svg>
+                                    <span>패턴 매칭 규칙</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#00C9DB">
+                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z"/>
+                                    </svg>
+                                    <span>상황 분석</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#28C76F">
+                                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                                    </svg>
+                                    <span>자동 제안 생성</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>SWRL 규칙 예시:</strong><br/>
+                                <code>InventoryLine(?inv) ∧ onHand(?inv, ?qty) ∧ safetyStock(?inv, ?min) ∧ lessThan(?qty, ?min) → LowStockSituation(?inv)</code>
+                            </div>
+                        </div>
+                        <div class="layer-arrow">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path d="M20 5 L20 30 M10 20 L20 30 L30 20" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="arrow-label">상황 생성</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 2: Operational Ontology -->
+                    <div class="layer-card layer-2" data-layer="2">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 2</div>
+                            <h3>Operational Ontology Core</h3>
+                            <div class="layer-badge badge-ontology">온톨로지</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>탄약 / 위치 / 상태 / 이벤트 / 위험</strong> 등의 핵심 개념을 정의합니다.</p>
+                                <p>실시간 데이터로 활성화되며 추론의 기반이 됩니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#4A9EFF">
+                                        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                                    </svg>
+                                    <span>Depot, AmmoType, Batch</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#FF9F43">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                    </svg>
+                                    <span>Issue, Transfer, Inspection</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#EA5455">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                                    </svg>
+                                    <span>InventoryAnomaly, Risk</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>예시:</strong> 25개 클래스, 40개 관계(hasLocation, tracksBatch, producedBy 등)
+                            </div>
+                        </div>
+                        <div class="layer-arrow">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path d="M20 5 L20 30 M10 20 L20 30 L30 20" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="arrow-label">데이터 입력</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 1: Data/Sensor -->
+                    <div class="layer-card layer-1" data-layer="1">
+                        <div class="layer-header">
+                            <div class="layer-number">Layer 1</div>
+                            <h3>Data / Sensor Layer</h3>
+                            <div class="layer-badge badge-data">데이터 수집</div>
+                        </div>
+                        <div class="layer-content">
+                            <div class="layer-description">
+                                <p><strong>재고, 이동, 상태, 로그, 외부 정보</strong> 등 모든 원시 데이터를 수집합니다.</p>
+                                <p>IoT 센서, RFID, 바코드, 수동 입력, API 연동 등 다양한 소스에서 데이터를 획득합니다.</p>
+                            </div>
+                            <div class="layer-features">
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#00C9DB">
+                                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                                    </svg>
+                                    <span>실시간 센서 데이터</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#28C76F">
+                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                    </svg>
+                                    <span>입출고 트랜잭션</span>
+                                </div>
+                                <div class="feature-item">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="#9F7AEA">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <span>외부 시스템 연동</span>
+                                </div>
+                            </div>
+                            <div class="layer-examples">
+                                <strong>예시:</strong> 온도/습도 센서, RFID 리더기, ERP 시스템 데이터, 수동 검수 기록
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison -->
+                <div class="comparison-section">
+                    <h2>📊 Palantir vs. 본 시스템 비교</h2>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h3>Palantir Foundry (3단계)</h3>
+                            <ol class="comparison-list">
+                                <li><strong>Data Layer</strong>: 데이터 통합 및 정제</li>
+                                <li><strong>Ontology Layer</strong>: 개념 모델링</li>
+                                <li><strong>Application Layer</strong>: 분석 및 시각화</li>
+                            </ol>
+                            <p class="comparison-note">✅ 강력한 데이터 통합 및 시각화<br/>❌ AI 자동 판단 및 승인 체계 부재</p>
+                        </div>
+                        <div class="comparison-card highlight-card">
+                            <h3>본 시스템 (6단계)</h3>
+                            <ol class="comparison-list">
+                                <li><strong>Data Layer</strong>: 센서/트랜잭션 데이터</li>
+                                <li><strong>Ontology Core</strong>: 탄약 도메인 온톨로지</li>
+                                <li><strong>SWRL Reasoning</strong>: AI 추론 → 제안 생성 🆕</li>
+                                <li><strong>SHACL Control</strong>: 근거 검증 → 판단 가능성 🆕</li>
+                                <li><strong>Governance</strong>: 제안/승인/감사 구조화 🆕</li>
+                                <li><strong>Human Decision</strong>: 최종 의사결정 🆕</li>
+                            </ol>
+                            <p class="comparison-note">✅ Palantir 기반 확장<br/>✅ AI 자동 판단 + 인간 통제<br/>✅ 완전한 감사 추적</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Use Cases -->
+                <div class="use-cases-section">
+                    <h2>🎯 실전 시나리오</h2>
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-header">
+                                <div class="use-case-icon" style="background: #4A9EFF;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3>시나리오 1: 긴급 재고 부족 감지</h3>
+                            </div>
+                            <div class="use-case-flow">
+                                <div class="flow-step">
+                                    <strong>Layer 1:</strong> 센서가 5.56mm 재고 500발 감지 (안전재고 1,000발 미달)
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 2:</strong> Ontology: InventoryLine 객체 업데이트
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 3:</strong> SWRL 규칙 실행 → LowStockSituation 추론
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 4:</strong> SHACL 검증: 데이터 신선도 OK, 최근 7일 소비 패턴 확인 OK
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 5:</strong> ActionProposal 생성: "5.56mm 2,000발 긴급 보충 제안"
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 6:</strong> 지휘관 검토 → 승인 → 자동 발주 실행
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="use-case-card">
+                            <div class="use-case-header">
+                                <div class="use-case-icon" style="background: #FF9F43;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                                    </svg>
+                                </div>
+                                <h3>시나리오 2: 근거 불충분 차단</h3>
+                            </div>
+                            <div class="use-case-flow">
+                                <div class="flow-step">
+                                    <strong>Layer 1:</strong> 재고 데이터가 72시간 업데이트 안됨
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 2:</strong> Ontology: lastUpdated 속성이 오래됨
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 3:</strong> SWRL 규칙이 재고 부족 패턴 감지
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 4:</strong> 🚫 SHACL 검증 실패: "데이터 신선도 위반 (> 48시간)"
+                                </div>
+                                <div class="flow-step">
+                                    <strong>결과:</strong> "판단 불가" 메시지 + "재고 데이터 즉시 업데이트 필요" 알림
+                                </div>
+                                <div class="flow-step">
+                                    <strong>Layer 6:</strong> 관리자에게 데이터 검증 요청 알림 전송
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits -->
+                <div class="benefits-section">
+                    <h2>💡 핵심 가치</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+                                    <path d="M16 4l-8 8h6v8h4v-8h6l-8-8zm-8 18h16v4H8v-4z"/>
+                                </svg>
+                            </div>
+                            <h3>완전한 투명성</h3>
+                            <p>모든 AI 판단의 근거, 규칙, 데이터를 추적 가능</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+                                    <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm-2 21l-7-7 1.414-1.414L14 20.172l9.586-9.586L25 12l-11 11z"/>
+                                </svg>
+                            </div>
+                            <h3>신뢰할 수 있는 AI</h3>
+                            <p>근거 불충분 시 자동 차단으로 잘못된 판단 방지</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+                                    <path d="M26 6h-4V4c0-1.1-.9-2-2-2h-8c-1.1 0-2 .9-2 2v2H6c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM12 4h8v2h-8V4zm4 18l-7-7h4v-4h6v4h4l-7 7z"/>
+                                </svg>
+                            </div>
+                            <h3>거버넌스 준수</h3>
+                            <p>모든 중요 결정은 권한 있는 인간의 승인 필수</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+                                    <path d="M16 2v12h12C28 8.686 23.314 4 16 4V2zM14 4.062C8.054 4.554 3 9.33 3 15c0 6.075 4.925 11 11 11 5.67 0 10.446-5.054 10.938-11H14V4.062z"/>
+                                </svg>
+                            </div>
+                            <h3>완벽한 감사 추적</h3>
+                            <p>누가, 언제, 왜 결정했는지 모든 기록 보존</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="tech-stack-section">
+                    <h2>🔧 기술 스택</h2>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <strong>온톨로지:</strong> RDF, OWL, ammunition.ttl
+                        </div>
+                        <div class="tech-item">
+                            <strong>추론:</strong> SWRL (Semantic Web Rule Language)
+                        </div>
+                        <div class="tech-item">
+                            <strong>검증:</strong> SHACL (Shapes Constraint Language)
+                        </div>
+                        <div class="tech-item">
+                            <strong>거버넌스:</strong> ActionProposal, ApprovalRequest, Decision
+                        </div>
+                        <div class="tech-item">
+                            <strong>추론 엔진:</strong> Apache Jena, Pellet, HermiT
+                        </div>
+                        <div class="tech-item">
+                            <strong>시각화:</strong> D3.js, Canvas API, WebGL
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="architecture.js"></script>
+</body>
+</html>
